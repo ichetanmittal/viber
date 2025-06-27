@@ -1,14 +1,16 @@
-'use client';
-import prisma from "@/lib/db";     
-import { useTRPC } from "@/trpc/client";       
-import { useQuery } from "@tanstack/react-query";       
+"use client";
+import { Button } from "@/components/ui/button";
+import { useTRPC } from "@/trpc/client";
+
+import { useMutation } from "@tanstack/react-query";
+
 
 const Page = () => {
   const trpc = useTRPC();
-  const {data} = useQuery(trpc.createAI.queryOptions({ text: 'client' }));
+  const invoke  = useMutation(trpc.invoke.mutationOptions({}));
   return (
-    <div>
-      {JSON.stringify(data)}
+    <div className="flex flex-col items-center justify-center h-screen">
+      <Button onClick={() => invoke.mutate({ text: 'client' })}>Invoke</Button>
     </div>
   );
 };
