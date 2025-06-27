@@ -9,7 +9,8 @@ const Page = () => {
   const trpc = useTRPC();
   const invoke  = useMutation(trpc.invoke.mutationOptions({}));
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div>
+      <h1>Hello World</h1>
       <Button onClick={() => invoke.mutate({ text: 'client' })}>Invoke</Button>
     </div>
   );

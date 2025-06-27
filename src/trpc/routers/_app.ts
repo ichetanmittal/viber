@@ -9,11 +9,11 @@ export const appRouter = createTRPCRouter({
         text: z.string(),
       }),
     )
-    .mutation(async(input) => {
+    .mutation(async({input}) => {
       await inngest.send({
         name: "test/hello.world",
         data: {
-          email: input.text,
+          text: input.text,
         },
       });
       return {
